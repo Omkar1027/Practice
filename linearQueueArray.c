@@ -27,33 +27,37 @@ void pop(int queue[],int *rear){
 
 
 int main(){
-    int queue[100],n,rear=0,choice;
-    printf("Enter number of elements to push in the queue: ");
-    scanf("%d",&n);
-    for(int i=0;i<n;i++){
-        printf("Enter queue[%d]: ",i);
-        scanf("%d",&queue[i]);
-        rear++;
-    }
+    // int queue[100],n,rear=0,choice;
+    // printf("Enter number of elements to push in the queue: ");
+    // scanf("%d",&n);
+    // for(int i=0;i<n;i++){
+    //     printf("Enter queue[%d]: ",i);
+    //     scanf("%d",&queue[i]);
+    //     rear++;
+    // }
 
-    while(1){
-        printf("\nPress 1 to push, 2 to pop, 3 to print queue: ");
-        scanf("%d", &choice);
+    // while(1){
+    //     printf("\nPress 1 to push, 2 to pop, 3 to print queue: ");
+    //     scanf("%d", &choice);
 
-        switch (choice) {
-            case 1:
-                push(queue, &rear);
-                break;
-            case 2:
-                pop(queue, &rear);
-                break;
-            case 3:
-                print_queue(queue, rear);
-                break;
-            default:
-                printf("Invalid");
-        }
-    }
+    //     switch (choice) {
+    //         case 1:
+    //             push(queue, &rear);
+    //             break;
+    //         case 2:
+    //             pop(queue, &rear);
+    //             break;
+    //         case 3:
+    //             print_queue(queue, rear);
+    //             break;
+    //         default:
+    //             printf("Invalid");
+    //     }
+    // }
+    char n='9';
+    int m=n;
+    printf("%d",m);
+
        
 }
 
