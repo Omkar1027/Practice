@@ -1,64 +1,52 @@
 #include <stdio.h>
 #include <string.h>
 
-void print_queue(int queue[], int rear){
+int rear=0;
+
+void print_queue(int queue[]){
     for(int i=0;i<rear;i++){
         printf("%d -> ",queue[i]);
     }
-    printf("NULL");
+    printf("NULL\n");
 }
 
-int push(int queue[],int *rear){  
-    printf("Enter queue[%d]: ",*rear);
-    scanf("%d",&queue[*rear]);
-    (*rear)++;
-
+int push(int queue[]){  
+    printf("Enter queue[%d]: ",rear);
+    scanf("%d",&queue[rear]);
+    rear++;
 } 
 
-void pop(int queue[],int *rear){   
-    if(*rear>0){
-        for(int i=0;i<*rear;i++){
+void pop(int queue[]){   
+    if(rear>0){
+        for(int i=0;i<rear;i++){
             queue[i]=queue[i+1];
         }
-        (*rear)--;
+        rear--;
     }
     else printf("Queue is empty.");
 }
 
 
 int main(){
-    // int queue[100],n,rear=0,choice;
-    // printf("Enter number of elements to push in the queue: ");
-    // scanf("%d",&n);
-    // for(int i=0;i<n;i++){
-    //     printf("Enter queue[%d]: ",i);
-    //     scanf("%d",&queue[i]);
-    //     rear++;
-    // }
+    int queue[100],choice;
 
-    // while(1){
-    //     printf("\nPress 1 to push, 2 to pop, 3 to print queue: ");
-    //     scanf("%d", &choice);
-
-    //     switch (choice) {
-    //         case 1:
-    //             push(queue, &rear);
-    //             break;
-    //         case 2:
-    //             pop(queue, &rear);
-    //             break;
-    //         case 3:
-    //             print_queue(queue, rear);
-    //             break;
-    //         default:
-    //             printf("Invalid");
-    //     }
-    // }
-    char n='9';
-    int m=n;
-    printf("%d",m);
-
-       
+    while(choice!=4){
+        printf("Press 1 to push, 2 to pop, 3 to print queue, 4 to exit: ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1:
+                push(queue);
+                break;
+            case 2:
+                pop(queue);
+                break;
+            case 3:
+                print_queue(queue);
+                break;
+            default:
+                printf("Invalid");
+        }
+    }      
 }
 
 
