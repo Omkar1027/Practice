@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 # define MAX 100
 int rear=-1;
 void print_queue(int queue[]){
