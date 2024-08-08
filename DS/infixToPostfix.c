@@ -10,12 +10,6 @@ int preference(char c){
     else return -1;
 }
 
-void print_stack(char arr[], int index){
-     for(int i=0;i<index;i++){
-        printf("%c",arr[i]);
-    }
-}
-
 void push(char stack[], char store){  
     stack[++stackIndex]=store;
 } 
@@ -26,53 +20,45 @@ int pop(char stack[]){
 
 void iToP(char infix[]){
     char postfix[100], stack[100];
-    int postfixInd=-1, checkP, checkPI, len;
-    push(stack,'(');
+    int postfixInd=0, len;
+    stack[++stackIndex]='(';
     len=strlen(infix);
-    len++;
-    infix[len]=')';
+    infix[len++]=')';
+    infix[len]='\0';
 
     for(int i=0; i<len; i++){
         char ichar= infix[i];
         if((ichar>='0'&& ichar<='9')||(ichar>='a'&& ichar<='z') || (ichar>='A'&& ichar<='Z')){
-            postfix[++postfixInd]=ichar;        
-            printf("Enter if 1\n");
+            postfix[postfixInd++]=ichar;        
         }
         else if(ichar=='('){
-            push(stack,ichar);
-            printf("Enter else if 1\n");
+            stack[++stackIndex] = ichar;
         }
         else if(ichar==')'){
-            while(stackIndex>-1 && stack[stackIndex]!='('){
+            while(stackIndex>=0 && stack[stackIndex]!='('){
                 postfix[postfixInd++]=stack[stackIndex--];
             }
             stackIndex--;
-            printf("Enter else if 2\n");
         }
         else {
-            checkP = preference(ichar);
-            checkPI =preference(stack[stackIndex-1]) ;
-            if(checkPI!=-1){
-                if(checkP>checkPI){
-                    while(stack[stackIndex]!='('){
-                        postfix[postfixInd++]=stack[stackIndex--];
-                    }
-                }
-                else{
-                    push(stack,ichar);
-                }
+            // && raiseTo(ichar) == 'L')
+            while(stackIndex>=0 && (preference(ichar) <= preference(stack[stackIndex]) )){
+                postfix[postfixInd++]=stack[stackIndex--];
             }
-            
+            stack[++stackIndex] = ichar;
         }
-        
     }
+
+    while (stackIndex >= 0) {
+        postfix[postfixInd++] = stack[stackIndex--];
+    }
+    postfix[postfixInd] = '\0';
+    
     if(stackIndex==-1){
-        printf("Postfix expression: ");
-        print_stack(postfix,postfixInd);
+        printf("Postfix expression: %s",postfix);
     }
     else{
-        printf("Invalid infix expression :`)");
-        print_stack(postfix,postfixInd);
+        printf("Invalid infix expression :`)      ");
     }
 }   
 
