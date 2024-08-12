@@ -1,53 +1,71 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
-void print_array(char arr[], int array_index){
-     for(int i=0;i<array_index;i++){
-        printf("\narr[%d]=%c ",i,arr[i]);
+int stackIndex = -1;
+
+int preference(char c) {
+    if (c == '^') return 3;
+    else if (c == '*' || c == '/') return 2;
+    else if (c == '+' || c == '-') return 1;
+    else return -1;
+}
+
+void print_array(char arr[], int array_index) {
+    for (int i = 0; i < array_index; i++) {
+        printf("\narr[%d] = %c ", i, arr[i]);
     }
 }
 
-void push(char arr[], int array_index, char store){  
-    arr[array_index]=store;
-} 
-
-void pop(char arr[], int array_index){   
-    arr[array_index]=0;
+void push(char stack[], char store) {
+    stack[++stackIndex] = store;
 }
 
-void parenthesis_matching(char str[],char arr[], int string_len){
-    int arr_len=0;
-    int didPop=0;
-    for(int i=0; i<string_len; i++){
-        if(str[i]=='['||str[i]=='{'||str[i]=='('||str[i]=='<'){
-            push(arr,arr_len,str[i]);
-            arr_len++;
-            didPop++;
-        }
-        else if(str[i]==']'||str[i]=='}'||str[i]==')'||str[i]=='>'){
-            if((arr[arr_len-1]=='('&&str[i]==')') || (arr[arr_len-1]=='{'&&str[i]=='}') || (arr[arr_len-1]=='['&&str[i]==']') || (arr[arr_len-1]=='<'&&str[i]=='>')){
-                pop(arr,arr_len);
-                arr_len--;
+int pop(char stack[]) {
+    return stack[stackIndex--];
+}
+
+void iToP(char postfix[]) {
+    char stack[100];
+    int len = strlen(postfix);
+
+    for (int i = 0; i < len; i++) {
+        char ichar = postfix[i];
+        if (isdigit(ichar)) {
+            push(stack, ichar - '0');
+        } else {
+            int r = pop(stack);
+            int l = pop(stack);
+            switch (ichar) {
+                case '^':
+                    push(stack, pow(l,r));
+                    break;
+                case '+':
+                    push(stack, l + r);
+                    break;
+                case '-':
+                    push(stack, l - r);
+                    break;
+                case '*':
+                    push(stack, l * r);
+                    break;
+                case '/':
+                    push(stack, l / r);
+                    break;
             }
         }
     }
-    if(arr_len==0 && didPop!=0){
-        printf("All parenthesis are matched");
-    }
-    else{
-        printf("Parenthesis are not matched.");
-    }
+    int result = pop(stack);
+    printf("%d", result);
 }
 
-int main(){
-    char str[100];
-    char arr[100];
+int main() {
+    char postfix[100];
 
-    printf("Enter the brackets: ");
-    scanf("%s", &str);
+    printf("Enter the postfix expression: ");
+    scanf("%s", postfix);
 
-    int n=strlen(str);
-
-    parenthesis_matching(str, arr, n);
+    iToP(postfix);
     return 0;
 }

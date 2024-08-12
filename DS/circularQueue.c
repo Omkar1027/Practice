@@ -67,3 +67,8 @@ int main() {
     }
     return 0;
 }
+
+
+
+char temp=popChar(stack);
+                push(stack,temp);

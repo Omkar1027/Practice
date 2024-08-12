@@ -10,6 +10,12 @@ int preference(char c){
     else return -1;
 }
 
+char raiseTo(char c) {
+    if (c == '^')
+        return 'R';
+    return 'L'; 
+}
+
 void push(char stack[], char store){  
     stack[++stackIndex]=store;
 } 
@@ -19,7 +25,7 @@ int pop(char stack[]){
 }
 
 void iToP(char infix[]){
-    char postfix[100], stack[100];
+    char postfix[100], stack[100],temp;
     int postfixInd=0, len;
     stack[++stackIndex]='(';
     len=strlen(infix);
@@ -29,28 +35,30 @@ void iToP(char infix[]){
     for(int i=0; i<len; i++){
         char ichar= infix[i];
         if((ichar>='0'&& ichar<='9')||(ichar>='a'&& ichar<='z') || (ichar>='A'&& ichar<='Z')){
-            postfix[postfixInd++]=ichar;        
+            push(postfix,ichar);        
         }
         else if(ichar=='('){
-            stack[++stackIndex] = ichar;
+            push(stack,ichar);
         }
         else if(ichar==')'){
             while(stackIndex>=0 && stack[stackIndex]!='('){
-                postfix[postfixInd++]=stack[stackIndex--];
+                temp = pop(stack);
+                push(postfix,temp);
             }
             stackIndex--;
         }
         else {
-            // && raiseTo(ichar) == 'L')
-            while(stackIndex>=0 && (preference(ichar) <= preference(stack[stackIndex]) )){
-                postfix[postfixInd++]=stack[stackIndex--];
+            while(stackIndex>=0 && (preference(ichar) <= preference(stack[stackIndex]) && raiseTo(ichar) == 'L')){
+                temp = pop(stack);
+                push(postfix,temp);
             }
             stack[++stackIndex] = ichar;
         }
     }
 
     while (stackIndex >= 0) {
-        postfix[postfixInd++] = stack[stackIndex--];
+        temp = pop(stack);
+        push(postfix,temp);
     }
     postfix[postfixInd] = '\0';
     
