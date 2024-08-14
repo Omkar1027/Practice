@@ -3,8 +3,9 @@
 
 int front = -1;
 int rear = -1;
+int my_c_queue[MAX];
 
-void print_queue(int my_c_queue[]) {
+void print_queue() {
     if (front==-1 && rear == -1) {
         printf("Circular queue is empty\n");
         return;
@@ -17,25 +18,24 @@ void print_queue(int my_c_queue[]) {
     printf("NULL\n\n");
 }
 
-int push(int my_c_queue[]) {
+int insert(int element) {
     if(front==-1&&rear==-1){
         front++;
-        printf("Enter element to push in circular queue: ");
-        scanf("%d", &my_c_queue[++rear]);
+        my_c_queue[++rear]=element;
     }
     else if (front==(rear+1)%MAX) {
         printf("Circular queue overflow\n");
         return 0;
     }
     else{
-        printf("Enter element to push in circular queue: ");
-        scanf("%d", &my_c_queue[++rear]);
+        my_c_queue[++rear]=element;
     }
 }
 
-void pop(int my_c_queue[]) {
+void delete() {
     if (rear==-1) {
         printf("Circular queue is empty\n");
+        return;
     } else {
         rear--;
         if(rear==-1){
@@ -45,19 +45,21 @@ void pop(int my_c_queue[]) {
 }
 
 int main() {
-    int my_c_queue[MAX], choice = 0;
+    int choice = 0, element;
     while (choice != 4) {
-        printf("Press 1 to push, 2 to pop, 3 to print queue, 4 to exit: ");
+        printf("Press 1 to insert, 2 to delete, 3 to print queue, 4 to exit: ");
         scanf("%d", &choice);
         switch (choice) {
             case 1:
-                push(my_c_queue);
+                printf("Enter element to insert in circular queue: ");
+                scanf("%d",&element);
+                insert(element);
                 break;
             case 2:
-                pop(my_c_queue);
+                delete();
                 break;
             case 3:
-                print_queue(my_c_queue);
+                print_queue();
                 break;
             case 4:
                 break;
@@ -67,5 +69,3 @@ int main() {
     }
     return 0;
 }
-
-
