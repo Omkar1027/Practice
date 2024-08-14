@@ -69,6 +69,3 @@ int main() {
 }
 
 
-
-char temp=popChar(stack);
-                push(stack,temp);
