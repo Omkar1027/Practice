@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student-Alumni Connect</title>
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <header>
+        <h1>Student-Alumni Connect</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Alumni</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Connecting Students with Alumni</h2>
+        <p>Explore and connect with alumni from your college.</p>
+        <button onclick="showForm()">Find Alumni</button>
+    </section>
+
+    <section class="alumni-form" id="alumniForm" style="display: none;">
+        <h3>Search Alumni</h3>
+        <form id="searchForm">
+            <input type="text" id="studentName" placeholder="Your Name">
+            <input type="email" id="studentEmail" placeholder="Your Email">
+            <input type="text" id="searchField" placeholder="Search by Alumni Name, Field, Year">
+            <button type="submit">Search</button>
+        </form>
+        <div id="results"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Student-Alumni Connect. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
