@@ -6,57 +6,59 @@ int rear = -1;
 int my_c_queue[MAX];
 
 void print_queue() {
-    if (front==-1 && rear == -1) {
+    if (front == -1) {
         printf("Circular queue is empty\n");
         return;
     }
-    int i=0;
-    for ( i = front; i != rear; i=(i+1) % MAX) {
+    int i = front;
+    while (1) {
         printf("%d -> ", my_c_queue[i]);
+        if (i == rear)
+            break;
+        i = (i + 1) % MAX;
     }
-    printf("%d -> ", my_c_queue[i]);
     printf("NULL\n\n");
 }
 
-int insert(int element) {
-    if(front==-1&&rear==-1){
-        front++;
-        my_c_queue[++rear]=element;
-    }
-    else if (front==(rear+1)%MAX) {
+void push(int ele) {
+    if ((rear + 1) % MAX == front) {
         printf("Circular queue overflow\n");
-        return 0;
+        return ;
     }
-    else{
-        my_c_queue[++rear]=element;
+    if (front == -1 && rear == -1) {
+        front = rear = 0;
+        my_c_queue[rear] = ele;
+    } else {
+        rear = (rear + 1) % MAX;
+        my_c_queue[rear] = ele;
     }
 }
 
-void delete() {
-    if (rear==-1) {
+void pop() {
+    if (front == -1) {
         printf("Circular queue is empty\n");
         return;
+    }
+    if (front == rear) {
+        front = rear = -1;
     } else {
-        rear--;
-        if(rear==-1){
-            front=-1;
-        }
+        front = (front + 1) % MAX;
     }
 }
 
 int main() {
-    int choice = 0, element;
+    int choice = 0, ele;
     while (choice != 4) {
-        printf("Press 1 to insert, 2 to delete, 3 to print queue, 4 to exit: ");
+        printf("Press 1 to push, 2 to pop, 3 to print queue, 4 to exit: ");
         scanf("%d", &choice);
         switch (choice) {
             case 1:
-                printf("Enter element to insert in circular queue: ");
-                scanf("%d",&element);
-                insert(element);
+                printf("Enter element to push in circular queue: ");
+                scanf("%d", &ele);
+                push(ele);
                 break;
             case 2:
-                delete();
+                pop();
                 break;
             case 3:
                 print_queue();
