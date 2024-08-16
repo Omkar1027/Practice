@@ -3,61 +3,65 @@
 
 int front = -1;
 int rear = -1;
+int my_c_queue[MAX];
 
-void print_queue(int my_c_queue[]) {
-    if (front==-1 && rear == -1) {
+void print_queue() {
+    if (front == -1) {
         printf("Circular queue is empty\n");
         return;
     }
-    int i=0;
-    for ( i = front; i != rear; i=(i+1) % MAX) {
+    int i = front;
+    while (1) {
         printf("%d -> ", my_c_queue[i]);
+        if (i == rear)
+            break;
+        i = (i + 1) % MAX;
     }
-    printf("%d -> ", my_c_queue[i]);
     printf("NULL\n\n");
 }
 
-int push(int my_c_queue[]) {
-    if(front==-1&&rear==-1){
-        front++;
-        printf("Enter element to push in circular queue: ");
-        scanf("%d", &my_c_queue[++rear]);
-    }
-    else if (front==(rear+1)%MAX) {
+void push(int ele) {
+    if ((rear + 1) % MAX == front) {
         printf("Circular queue overflow\n");
-        return 0;
+        return ;
     }
-    else{
-        printf("Enter element to push in circular queue: ");
-        scanf("%d", &my_c_queue[++rear]);
+    if (front == -1 && rear == -1) {
+        front = rear = 0;
+        my_c_queue[rear] = ele;
+    } else {
+        rear = (rear + 1) % MAX;
+        my_c_queue[rear] = ele;
     }
 }
 
-void pop(int my_c_queue[]) {
-    if (rear==-1) {
+void pop() {
+    if (front == -1) {
         printf("Circular queue is empty\n");
+        return;
+    }
+    if (front == rear) {
+        front = rear = -1;
     } else {
-        rear--;
-        if(rear==-1){
-            front=-1;
-        }
+        front = (front + 1) % MAX;
     }
 }
 
 int main() {
-    int my_c_queue[MAX], choice = 0;
+    int choice = 0, ele;
     while (choice != 4) {
         printf("Press 1 to push, 2 to pop, 3 to print queue, 4 to exit: ");
         scanf("%d", &choice);
         switch (choice) {
             case 1:
-                push(my_c_queue);
+                printf("Enter element to push in circular queue: ");
+                scanf("%d", &ele);
+                push(ele);
                 break;
             case 2:
-                pop(my_c_queue);
+                pop();
                 break;
             case 3:
-                print_queue(my_c_queue);
+                print_queue();
                 break;
             case 4:
                 break;
@@ -67,6 +71,3 @@ int main() {
     }
     return 0;
 }
-
-
-
