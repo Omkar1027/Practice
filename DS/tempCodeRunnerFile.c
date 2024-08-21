@@ -1,71 +1,105 @@
-#include <ctype.h>
 #include <stdio.h>
-#include <string.h>
-#include <math.h>
+#define MAX 100
 
-int stackIndex = -1;
+int front = -1;
+int rear = -1;
+int myQueue[MAX];
+int priority[MAX];
 
-int preference(char c) {
-    if (c == '^') return 3;
-    else if (c == '*' || c == '/') return 2;
-    else if (c == '+' || c == '-') return 1;
-    else return -1;
+int isEmpty() {
+    return front == -1 || front > rear;
 }
 
-void print_array(char arr[], int array_index) {
-    for (int i = 0; i < array_index; i++) {
-        printf("\narr[%d] = %c ", i, arr[i]);
+void enqueue(int value, int pr) {
+    if ((rear + 1) % MAX == front) {
+        printf("Queue overflow\n");
+        return;
     }
+    if (front == -1) {
+        front = 0;
+    }
+    rear = (rear + 1) % MAX;
+    myQueue[rear] = value;
+    priority[rear] = pr;
 }
 
-void push(char stack[], char store) {
-    stack[++stackIndex] = store;
-}
-
-int pop(char stack[]) {
-    return stack[stackIndex--];
-}
-
-void iToP(char postfix[]) {
-    char stack[100];
-    int len = strlen(postfix);
-
-    for (int i = 0; i < len; i++) {
-        char ichar = postfix[i];
-        if (isdigit(ichar)) {
-            push(stack, ichar - '0');
-        } else {
-            int r = pop(stack);
-            int l = pop(stack);
-            switch (ichar) {
-                case '^':
-                    push(stack, pow(l,r));
-                    break;
-                case '+':
-                    push(stack, l + r);
-                    break;
-                case '-':
-                    push(stack, l - r);
-                    break;
-                case '*':
-                    push(stack, l * r);
-                    break;
-                case '/':
-                    push(stack, l / r);
-                    break;
-            }
+int peek() {
+    int p = -1;  
+    int index = -1;
+    for (int i = front; i <= rear; i++) {
+        if (p == priority[i] && index > -1 && myQueue[index] < myQueue[i]) {
+            p = priority[i];
+            index = i;
+        } else if (p < priority[i]) {
+            p = priority[i];
+            index = i;
         }
     }
-    int result = pop(stack);
-    printf("%d", result);
+    return index;
+}
+
+void dequeue() {
+    if (isEmpty()) {
+        printf("Queue is empty\n");
+        return;
+    }
+    int index = peek();
+    for (int i = index; i < rear; i++) {
+        myQueue[i] = myQueue[i + 1];
+        priority[i] = priority[i + 1];
+    }
+    rear--;
+    if (isEmpty()) {
+        front = -1;
+        rear = -1;
+    }
+}
+
+void printQueue() {
+
+    if (isEmpty()) {
+        printf("Queue is empty.\n");
+        return;
+    }
+
+    printf("Queue elements and their priorities:\n");
+    for (int i = front; i <= rear; i++) {
+        printf("Element: %d, Priority: %d\n", myQueue[i], priority[i]);
+    }
 }
 
 int main() {
-    char postfix[100];
-
-    printf("Enter the postfix expression: ");
-    scanf("%s", postfix);
-
-    iToP(postfix);
+    int choice = 0, value, pr;
+    while (choice != 5) {
+        printf("Press 1 to enqueue, 2 to dequeue, 3 to peek, 4 to print queue, 5 to exit: ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1:
+                printf("Enter value to enqueue: ");
+                scanf("%d", &value);
+                printf("Enter priority: ");
+                scanf("%d", &pr);
+                enqueue(value, pr);
+                break;
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                if (isEmpty()) {
+                    printf("Queue is empty\n");
+                } else {
+                    int index = peek();
+                    printf("Element with highest priority: %d (Priority: %d)\n", myQueue[index], priority[index]);
+                }
+                break;
+            case 4:
+                printQueue();
+                break;
+            case 5:
+                break;
+            default:
+                printf("Invalid choice\n");
+        }
+    }
     return 0;
 }

@@ -1,69 +1,101 @@
 #include <stdio.h>
-#define MAX 5
+#define MAX 100
 
 int front = -1;
 int rear = -1;
-int my_c_queue[MAX];
+int myQueue[MAX];
+int priority[MAX];
 
-void print_queue() {
-    if (front == -1) {
-        printf("Circular queue is empty\n");
-        return;
-    }
-    int i = front;
-    while (1) {
-        printf("%d -> ", my_c_queue[i]);
-        if (i == rear)
-            break;
-        i = (i + 1) % MAX;
-    }
-    printf("NULL\n\n");
+int isEmpty() {
+    return front == -1 || front > rear;
 }
 
-void push(int ele) {
+void enqueue(int value, int pr) {
     if ((rear + 1) % MAX == front) {
-        printf("Circular queue overflow\n");
-        return ;
+        printf("Queue overflow\n");
+        return;
     }
-    if (front == -1 && rear == -1) {
-        front = rear = 0;
-        my_c_queue[rear] = ele;
-    } else {
-        rear = (rear + 1) % MAX;
-        my_c_queue[rear] = ele;
+    if (front == -1) {
+        front = 0;
+    }
+    rear = (rear + 1) % MAX;
+    myQueue[rear] = value;
+    priority[rear] = pr;
+}
+
+int peek() {
+    int p = -1;  
+    int index = -1;
+    for (int i = front; i <= rear; i++) {
+        if (p == priority[i] && index > -1 && myQueue[index] < myQueue[i]) {
+            p = priority[i];
+            index = i;
+        } else if (p < priority[i]) {
+            p = priority[i];
+            index = i;
+        }
+    }
+    return index;
+}
+
+void dequeue() {
+    if (isEmpty()) {
+        printf("Queue is empty\n");
+        return;
+    }
+    int index = peek();
+    for (int i = index; i < rear; i++) {
+        myQueue[i] = myQueue[i + 1];
+        priority[i] = priority[i + 1];
+    }
+    rear--;
+    if (isEmpty()) {
+        front = -1;
+        rear = -1;
     }
 }
 
-void pop() {
-    if (front == -1) {
-        printf("Circular queue is empty\n");
+void printQueue() {
+
+    if (isEmpty()) {
+        printf("Queue is empty.\n");
         return;
     }
-    if (front == rear) {
-        front = rear = -1;
-    } else {
-        front = (front + 1) % MAX;
+
+    printf("Queue elements and their priorities:\n");
+    for (int i = front; i <= rear; i++) {
+        printf("Element: %d, Priority: %d\n", myQueue[i], priority[i]);
     }
 }
 
 int main() {
-    int choice = 0, ele;
-    while (choice != 4) {
-        printf("Press 1 to push, 2 to pop, 3 to print queue, 4 to exit: ");
+    int choice = 0, value, pr;
+    while (choice != 5) {
+        printf("Press 1 to enqueue, 2 to dequeue, 3 to peek, 4 to print queue, 5 to exit: ");
         scanf("%d", &choice);
         switch (choice) {
             case 1:
-                printf("Enter element to push in circular queue: ");
-                scanf("%d", &ele);
-                push(ele);
+                printf("Enter value to enqueue: ");
+                scanf("%d", &value);
+                printf("Enter priority: ");
+                scanf("%d", &pr);
+                enqueue(value, pr);
                 break;
             case 2:
-                pop();
+                dequeue();
                 break;
             case 3:
-                print_queue();
+                if (isEmpty()) {
+                    printf("Queue is empty\n");
+                } else {
+                    int index = peek();
+                    printf("Element with highest priority: %d (Priority: %d)\n", myQueue[index], priority[index]);
+                }
                 break;
             case 4:
+                printQueue();
+                break;
+            case 5:
                 break;
             default:
                 printf("Invalid choice\n");
