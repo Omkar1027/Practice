@@ -13,15 +13,20 @@ struct Node* createNode(int data) {
     return newNode;
 }
 
+void createll(){
+    if 
+}
+
 int main(int argc, char const *argv[])
 {
-    
+    int c;
+    printf("Menu is:\n 1. Create\n 2.Insert\n 3.Delete\n 4.Exit\n ");
+    scanf("%d",&c);
     switch (c)
     {
     case 1:
-        /* code */
+        createll();
         break;
-    
     default:
         break;
     }
