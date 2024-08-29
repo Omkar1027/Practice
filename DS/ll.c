@@ -13,5 +13,16 @@ struct Node* createNode(int data) {
     return newNode;
 }
 
-void insertAtBeginning(struct Node** head, int data) {
-    struct Node* newNode =
+int main(int argc, char const *argv[])
+{
+    switch (expression)
+    {
+    case /* constant-expression */:
+        /* code */
+        break;
+    
+    default:
+        break;
+    }
+    return 0;
+}
