@@ -15,9 +15,10 @@ struct Node* createNode(int data) {
 
 int main(int argc, char const *argv[])
 {
-    switch (expression)
+    
+    switch (c)
     {
-    case /* constant-expression */:
+    case 1:
         /* code */
         break;
     
