@@ -11,27 +11,24 @@ void print_queue() {
         return;
     }
     int i = front;
-    while (1) {
+    while (i != rear) {
         printf("%d -> ", my_c_queue[i]);
-        if (i == rear)
-            break;
         i = (i + 1) % MAX;
     }
-    printf("NULL\n\n");
+    printf("%d -> NULL\n\n", my_c_queue[rear]); // Print the last element
 }
 
 void push(int ele) {
     if ((rear + 1) % MAX == front) {
         printf("Circular queue overflow\n");
-        return ;
+        return;
     }
     if (front == -1 && rear == -1) {
         front = rear = 0;
-        my_c_queue[rear] = ele;
     } else {
         rear = (rear + 1) % MAX;
-        my_c_queue[rear] = ele;
     }
+    my_c_queue[rear] = ele;
 }
 
 void pop() {

@@ -5,13 +5,6 @@
 
 int stackIndex = -1;
 
-int preference(char c) {
-    if (c == '^') return 3;
-    else if (c == '*' || c == '/') return 2;
-    else if (c == '+' || c == '-') return 1;
-    else return -1;
-}
-
 void print_array(char arr[], int array_index) {
     for (int i = 0; i < array_index; i++) {
         printf("\narr[%d] = %c ", i, arr[i]);
@@ -69,3 +62,4 @@ int main() {
     postfixEvaluation(postfix);
     return 0;
 }
+

@@ -24,13 +24,10 @@ void enqueue(int value, int pr) {
 }
 
 int peek() {
-    int p = -1;  
-    int index = -1;
+    int p = priority[front];  
+    int index = front;
     for (int i = front; i <= rear; i++) {
-        if (p == priority[i] && index > -1 && myQueue[index] < myQueue[i]) {
-            p = priority[i];
-            index = i;
-        } else if (p < priority[i]) {
+        if (p < priority[i]) {
             p = priority[i];
             index = i;
         }

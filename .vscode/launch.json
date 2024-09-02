@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Omkar Kadam/OneDrive/Desktop/tpDaily",
-      "program": "c:/Users/Omkar Kadam/OneDrive/Desktop/tpDaily/build/Debug/outDebug",
+      "cwd": "c:/Desktop Study/tpDaily/DS/Queue",
+      "program": "c:/Desktop Study/tpDaily/DS/Queue/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
