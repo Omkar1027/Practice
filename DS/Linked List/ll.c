@@ -347,14 +347,11 @@ void DeleteByValue()
             ptrBeforeValue=ptrBeforeValue->next;
         ptrBeforeValue->next=ptrAtValue->next;
     }
-
-
-
 }
 
 void DeleteAtPosition()
 {
     int pos, totalNodes;
     struct Node *ptrBeforePos,*ptrAtPos;
-    
+
 }

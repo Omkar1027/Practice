@@ -17,21 +17,33 @@ void enqueue(int ele) {
     my_c_queue[++rear]=ele;
 }
 
+void dequeue(){
+    if(front==-1){
+        printf("Queue is empty");
+        return;
+    }
+    if(front==rear){
+        front=rear=-1;
+    }
+    front++;
+}
+
 void print_queue(){
     if(front==-1){
         printf("Queue is empty\n");
         return;
     }
-    for(int i=front;i<=rear;i++){
+    int i=0;
+    for(i=front;i<=rear;i++){
         printf("%d ", my_c_queue[i]);
     }
-    printf("-> Null");
+    if(i!=0) printf("-> Null");
 }
 
 int main() {
     int choice = 0, ele;
     while (choice != 4) {
-        printf("Press 1 to push, 2 to pop, 3 to print queue, 4 to exit: ");
+        printf("\nPress 1 to push, 2 to pop, 3 to print queue, 4 to exit: ");
         scanf("%d", &choice);
         switch (choice) {
             case 1:
@@ -40,7 +52,7 @@ int main() {
                 enqueue(ele);
                 break;
             case 2:
-                // dequeue();
+                dequeue();
                 break;
             case 3:
                 print_queue();
