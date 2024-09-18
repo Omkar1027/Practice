@@ -1,0 +1,50 @@
+only use const and let to declare... dont use var or just define the data
+
+
+Primitive datatypes: Number(number), Bigint(bigint), Boolean(boolean), String(string), Null(object), Undefined(undefined), Symbol(function)
+
+
+"33" -> 33
+"33abc" -> NaN
+true -> 1 false -> 0
+1 -> true 0 -> false
+"" -> false
+"abc" -> true
+
+
+while comparison, if comparing with == the string is not converted to Number
+But if comparing with > or < the string is convarted to number
+console.log(null==0)  false //not converted
+console.log(null<=0)  true //converted
+console.log(null<0)   false //converted
+console.log(undefined==0)  false
+console.log(undefined<=0)  false
+console.log(undefined<0)   false
+
+
+Non-primitive datatypes: Array(object), Object(object), Function(function)
+
+
+Stack(Primitive) -> It gives a copy of the data 
+let a='omkar'
+let b=a
+b='Omkar'
+console.table(a+b); //omkarOmkar
+Heap(Non-primitive) -> It gives the address/reference of the data of the data 
+
+
+there are different types of functions to manipulate strings
+they are not used on normal String(string), its used on String(object) which is declared as follows
+let str=new String("abc")
+Eg. tolower,toupper, slice, trim, split
+
+
+Using functions on number
+Eg: let num = 123.99 num.toPrecision(3) // 124
+    let num = 10000000 num.toLocaleString('en-IN) //10,00,000
+Using math fuunctions in using Math.round(num //124)
+Eg: Math.random()
+    let min=10, max=20
+    console.log(Math.floor((Math.random()*(max-min+1)) + min));
+
+

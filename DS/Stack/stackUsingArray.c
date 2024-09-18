@@ -1,75 +1,24 @@
-#include <stdio.h>
-#define Max 100
-int top = -1;
-int arr[Max];
+//MAXIMUN ELEMENTS
 
-void push(int ele) {
-    if(top == Max-1)
-        printf("Stack is full.\n");
-    else {
-        arr[++top] = ele;
-    }
-}
-
-void peek(){
-    if (top == -1) {
-        printf("Array is empty, cannot peek.\n");
-    } else {
-        printf("Top element is %d\n", arr[top]);
-    }
-}
-
-void isEmpty(){
-    if (top == -1)
-        printf("Stack is empty.\n");
-    else
-        printf("Stack is not empty.\n");
-}
-
-void isFull() {
-    if (top == Max-1)
-        printf("Stack is full.\n");
-    else
-        printf("Stack is not full.\n");
-}
-
-void pop() {
-    if (top == -1) {
-        printf("Array is empty, cannot pop.\n");
-    } else {
-        top--;
-    }
-}
-
-int main() {
-    int choice = 0,ele;
-    while (choice != 6) {
-        printf("\nPress 1 to push, 2 to pop, 3 to peek, 4 to isEmpty, 5 to is Full, 6 to exit: ");
-        scanf("%d", &choice);
-        switch (choice) {
-            case 1:
-                printf("Enter element to push: ");
-                scanf("%d", &ele);
-                push(ele);
-                break;
-            case 2:
-                pop();
-                break;
-            case 3:
-                peek();
-                break;
-            case 4:
-                isEmpty();
-                break;
-            case 5:
-                isFull();
-                break;
-            case 6:
-                printf("Exited the loop.\n");
-                break;
-            default:
-                printf("Invalid choice.\n");
+/*int* getMax(int operations_count, char** operations, int* result_count) {
+    int top=-1,n1=0,n2=0,result_index=0;
+    int myStack[operations_count+10];
+    
+    int* results= malloc(operations_count * sizeof(int));
+    
+    for(int x=0;x<operations_count;x++){
+        if (sscanf(operations[x], "%d %d", &n1, &n2) < 1) {
+            continue; 
+        }
+        if(n1==2&& top!=-1){
+            top--;
+        }else if(n1==3 && top!=-1){
+            results[result_index++]=myStack[top];    
+        }else if(n1==1){
+            myStack[++top]=n2;  
         }
     }
-    return 0;
-}
+    *result_count=result_index;
+    return results;
+}*/
+
