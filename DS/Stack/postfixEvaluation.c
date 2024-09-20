@@ -5,12 +5,6 @@
 
 int stackIndex = -1;
 
-void print_array(char arr[], int array_index) {
-    for (int i = 0; i < array_index; i++) {
-        printf("\narr[%d] = %c ", i, arr[i]);
-    }
-}
-
 void push(char stack[], char store) {
     stack[++stackIndex] = store;
 }
@@ -25,11 +19,15 @@ void postfixEvaluation(char postfix[]) {
 
     for (int i = 0; i < len; i++) {
         char ichar = postfix[i];
+        
         if (isdigit(ichar)) {
             push(stack, ichar - '0');
-        } else {
+        }
+        
+        else {
             int r = pop(stack);
             int l = pop(stack);
+
             switch (ichar) {
                 case '^':
                     push(stack, pow(l,r));

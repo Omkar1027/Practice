@@ -1,51 +1,79 @@
 #include <stdio.h>
 #include <string.h>
-#define Max 100
 
-char arr[Max];
-int array_index=0;
+int stackIndex = -1;
 
-
-void push( char store){
-    arr[array_index]=store;
-    array_index++;
-} 
-
-void pop(){
-    arr[array_index]=0;
-    array_index--;
+int preference(char c) {
+    if (c == '^') return 3;
+    else if (c == '*' || c == '/') return 2;
+    else if (c == '+' || c == '-') return 1;
+    else return -1;
 }
 
-void parenthesis_matching(char str[]){
-    int string_len=strlen(str);
-    int didPop=0;
+void push(char stack[], char store) {
+    stack[++stackIndex] = store;
+}
 
-    for(int i=0; i<string_len; i++){
-        if(str[i]=='['||str[i]=='{'||str[i]=='('||str[i]=='<'){
-            push(str[i]);
-            didPop++;
-        }
-        else if(str[i]==']'||str[i]=='}'||str[i]==')'||str[i]=='>'){
-            if((arr[array_index-1]=='('&&str[i]==')') || (arr[array_index-1]=='{'&&str[i]=='}') || (arr[array_index-1]=='['&&str[i]==']') || (arr[array_index-1]=='<'&&str[i]=='>')){
-                pop();
+char pop(char stack[]) {
+    if (stackIndex >= 0)
+        return stack[stackIndex--];
+    return '\0'; // Return null character if stack is empty
+}
+
+void iToP(char infix[]) {
+    char postfix[100], stack[100], temp;
+    int postfixInd = 0, len;
+
+    stack[++stackIndex] = '(';
+    len = strlen(infix);
+    infix[len++] = ')';
+    infix[len] = '\0';
+
+    for (int i = 0; i < len; i++) {
+        char ichar = infix[i];
+
+        if ((ichar >= '0' && ichar <= '9') || (ichar >= 'a' && ichar <= 'z') || (ichar >= 'A' && ichar <= 'Z')) {
+            postfix[postfixInd++] = ichar;
+        } 
+
+        else if (ichar == '(') {
+            push(stack, ichar);
+        } 
+
+        else if (ichar == ')') {
+
+            while (stackIndex > -1 && stack[stackIndex] != '(') {
+                temp = pop(stack);
+                postfix[postfixInd++] = temp;
             }
+            stackIndex--; // Pop the '(' from the stack
+        } 
+
+        else {
+
+            while (stackIndex > -1 && (preference(ichar) <= preference(stack[stackIndex]) && ichar != '^')) {
+                temp = pop(stack);
+                postfix[postfixInd++] = temp;
+            }
+            push(stack, ichar);
         }
     }
-    if(array_index==0 && didPop!=0){
-        printf("All parenthesis are matched\n");
-    }
-    else{
-        printf("Parenthesis are not matched.\n");
+
+    postfix[postfixInd] = '\0';
+
+    if (stackIndex == -1) {
+        printf("Postfix expression: %s\n", postfix);
+    } else {
+        printf("Invalid infix expression\n");
     }
 }
 
-int main(){
-    char str[100];
-    while(1){
-    printf("Enter the brackets: ");
-    scanf("%s", &str);
+int main() {
+    char infix[100];
 
-    parenthesis_matching(str);
-    }
+    printf("Enter the infix expression: ");
+    scanf("%s", infix);
+
+    iToP(infix);
     return 0;
 }

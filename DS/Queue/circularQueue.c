@@ -10,28 +10,24 @@ void print_queue() {
         printf("Circular queue is empty\n");
         return;
     }
-    int i = front;
-    while (i != rear) {
-        printf("%d -> ", my_c_queue[i]);
-        i = (i + 1) % MAX;
-    }
+    for(int i = front; i!=rear;i=(i+1)%MAX)
+        printf("%d -> ",my_c_queue[i]);
     printf("%d -> NULL\n\n", my_c_queue[rear]); // Print the last element
 }
 
-void push(int ele) {
+void enqueue(int ele) {
     if ((rear + 1) % MAX == front) {
         printf("Circular queue overflow\n");
         return;
     }
     if (front == -1 && rear == -1) {
-        front = rear = 0;
-    } else {
-        rear = (rear + 1) % MAX;
+        front = 0;
     }
+    rear = (rear + 1) % MAX;
     my_c_queue[rear] = ele;
 }
 
-void pop() {
+void dequeue() {
     if (front == -1) {
         printf("Circular queue is empty\n");
         return;
@@ -52,10 +48,10 @@ int main() {
             case 1:
                 printf("Enter element to push in circular queue: ");
                 scanf("%d", &ele);
-                push(ele);
+                enqueue(ele);
                 break;
             case 2:
-                pop();
+                dequeue();
                 break;
             case 3:
                 print_queue();

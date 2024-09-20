@@ -2,21 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "java",
-      "name": "t",
-      "request": "launch",
-      "mainClass": "t",
-      "projectName": "tpDaily_d15d41bb"
-    },
-    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Desktop Study/tpDaily/DS/Queue",
-      "program": "c:/Desktop Study/tpDaily/DS/Queue/build/Debug/outDebug",
+      "cwd": "c:/Users/Omkar Kadam/OneDrive/Desktop/Linked List Sir",
+      "program": "c:/Users/Omkar Kadam/OneDrive/Desktop/Linked List Sir/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -47,8 +47,7 @@ void dequeue() {
     }
     rear--;
     if (isEmpty()) {
-        front = -1;
-        rear = -1;
+        front = rear = -1;
     }
 }
 
@@ -61,7 +60,7 @@ void printQueue() {
 
     printf("Queue elements and their priorities:\n");
     for (int i = front; i <= rear; i++) {
-        printf("Element: %d, Priority: %d\n", myQueue[i], priority[i]);
+        printf("Element: %d\tPriority: %d\n", myQueue[i], priority[i]);
     }
 }
 
@@ -86,7 +85,7 @@ int main() {
                     printf("Queue is empty\n");
                 } else {
                     int index = peek();
-                    printf("Element with highest priority: %d (Priority: %d)\n", myQueue[index], priority[index]);
+                    printf("Element with highest priority: %d\tPriority: %d\n", myQueue[index], priority[index]);
                 }
                 break;
             case 4:
