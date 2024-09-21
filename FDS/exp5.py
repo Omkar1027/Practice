@@ -4,33 +4,33 @@ import re
 data = {'Omkar': 'omkarkadam532@gmail.com', 'Kaustubh': 'kk@ves.ac.in','Parth': 'parthb@yahoo.com', 'Atharv': 'ab@ves.ac.in'}
 
 data = pd.Series(data)
-print(data)
+print("Original Data:\n", data, "\n")
 
 # to check null values
-print(data.isnull())
+print("Null Values Check:\n", data.isnull(), "\n")
 
 # some basic functions
-print(data.str.contains('ves.ac.in'))
-print(data.str[:5])
+print("Contains 'ves.ac.in':\n", data.str.contains('ves.ac.in'), "\n")
+print("First 5 Characters:\n", data.str[:5], "\n")
 
-#strip
+# strip
 data_stripped = data.str.strip()
-print(data_stripped)
+print("Stripped Data:\n", data_stripped, "\n")
 
 # join
 data_joined = data_stripped.str.join(' - ')
-print(data_joined)
+print("Joined Data:\n", data_joined, "\n")
 
 # to count the data
 data_count = data.str.count('a')
-print(data_count)
+print("Count of 'a':\n", data_count, "\n")
 
 # to replace the data
 data_replaced = data.str.replace('gmail.com', 'example.com')
-print(data_replaced)
+print("Replaced Data:\n", data_replaced, "\n")
 
 # data to lower and upper
 data_lower = data.str.lower()
-print(data_lower)
+print("Lowercase Data:\n", data_lower, "\n")
 data_upper = data.str.upper()
-print(data_upper)
+print("Uppercase Data:\n", data_upper, "\n")

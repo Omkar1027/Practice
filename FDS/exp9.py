@@ -16,6 +16,7 @@ all = np.array([[90, 85.5, 76.33, 60.23, 32], [80, 93, 60.22, 85, 32]])
 # sum and mean
 print("Mean of s1 marks:", student1.mean(), "\n")
 print("Sum of s2 marks:", student2.sum(), "\n")
+print("Median of s2 marks:", np.median(student2), "\n")
 print("Cumulativeum sum :", all.cumsum(), "\n")
 
 # Greater than

@@ -1,5 +1,2 @@
 
-print('************************************************************')
-
-print(data.dropna(axis=1, how='all'))
-print('************************************************************')
+# print("\nMatrix Multiplication (element-wise):\n", matrix_mul)

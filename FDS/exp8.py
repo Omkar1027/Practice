@@ -11,10 +11,10 @@ marks2D=[[90, 85, 76, 60],
          [80, 82, 90, 65],
          [78, 85, 88, 80]]
 marks2D.sort()
-print("Sorted 2D array: ",marks2D)
+print("\nSorted 2D array: ",marks2D)
 
 arr=["z","d","a","b","d","z","b","o","i"]
-print("Unique array: ",np.unique(arr))
+print("\nUnique array: ",np.unique(arr))
 
 #SEARCHING
 names = [
@@ -24,4 +24,4 @@ names = [
     ['Atharv', 'Kaustubh', 'Shreya', 'Omkar']
 ]
 
-print("Searching values:", np.in1d(names, ['Omkar', 'Yogesh', 'Atharv']))
+print("\nSearching values:", np.in1d(names, ['Omkar', 'Yogesh', 'Atharv']))
