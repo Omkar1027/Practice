@@ -1,20 +1,43 @@
-import seaborn as sns
 import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
 
-# roll_no=[1,2,3,4,5,6,7,8,9]
-# marks=[10,1,33,83,2,99,33,88,0]
-# sample=pd.DataFrame({"RollNo":roll_no, "Marks":marks})
-# sample.head()
-# print(sample)
+arr = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])
+#arr = np.random.randn(5, 4)
+print("arr ", arr)
+print('********************************************')
 
-# sns.lineplot(x='RollNo', y='Marks', data=sample)
-# plt.title('StudentsMarks')
-# plt.show()
+print("mean of arr", arr.mean())
+print('********************************************')
 
-planetdf=pd.read_csv('FDS/Seaborn/planets.csv')
-print(planetdf)
+print("sum of arr", arr.sum())
+print('********************************************')
 
-sns.lineplot(x='year', y='mass', data=planetdf)
-plt.show()
+#Functions like mean and sum take an optional axis argument
+#that computes the statistic over the given axis,
+
+print("sum of arr", arr.sum(axis=0))
+print('********************************************')
+
+#arr.mean(1) means “compute mean across the columns” where
+#arr.sum(0) means “compute sum down the rows.”
+
+#cumsum - function returns the cumulative sum of the elements
+#along the given axis
+#cumprod - cumulative product
+
+arr = np.array([0, 1, 2, 3, 4, 5, 6, 7])
+print("arr 1D ", arr)
+print('********************************************')
+
+print("cumulative sum :", arr.cumsum())
+print('********************************************')
+
+arr = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8]])
+print("arr 2D ", arr)
+print('********************************************')
+
+print("cum sum row-wise :", arr.cumsum(axis=0))
+print('********************************************')
+
+#check - print(arr.cumprod(axis=1))
+
+

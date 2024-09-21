@@ -55,6 +55,7 @@ const chars=str.split(' ')
 console.log(chars[3])
 */
 
+/*
 let min=-555, max=1
 console.log(Math.floor((Math.random()*(max-min+1)) + min));
 
@@ -63,5 +64,31 @@ console.log(myD.toString());
 
 let n=Date.toString()
 console.log(n.getFullYear());
+*/
 
+const abc=[1,2,[1,3],2,[2,[3]]]
+console.log(abc.flat(2));
+
+const mySym=Symbol("ok")
+const obj={
+    [mySym]:"ok",
+    name:"oo"
+}
+console.log(typeof obj.mySym);
+console.log(obj.name);
+
+obj.greet=function(){
+    console.log("Hello",obj.name);
+}
+
+console.log(obj.greet());
+
+function greeting(name){
+    if(!name){
+        console.log("nahi hai name ");
+        return
+    }
+    console.log("Hello",name);
+}
+greeting()
 

@@ -48,3 +48,60 @@ Eg: Math.random()
     console.log(Math.floor((Math.random()*(max-min+1)) + min));
 
 
+Array 1
+
+
+Array 2
+declare it inside []
+The functions used to join two or more arrays
+a.concat(b)
+x=[...a,...b]
+if x=[a,b,[a,b,c],d[e,[f]]]
+then         x.flat()
+To check                         x.isArray
+To convert                       x.from("Omkar")
+To convert already existing      x.of(score1,score2,score3)
+
+
+Objects 1 (LITERALS)
+declare it as key value pairs, ':' , inside {}
+access as obj.name
+BUT THE CORRECT SYNTAX IS obj["name"]
+to make it unchangeable use obj.freeze
+FUNCTIONS
+declared as normal variables
+obj.greet=function(){
+    console.log(`Hello${obj.name}`)
+}
+the [] use is mandatory in some cases
+
+
+Objects 2 (SINGLETON)
+To join two or more Objects
+const obj4 = Object.assign({}, obj1, obj2, obj3)
+      obj4 = Object.assign(...obj1, ...obj2, ...obj3)
+make array of all objects and access it using array
+users[1].email
+TO ACCESS ALL THE KEYS OR VALUES IN A Object
+Object.keys(User)
+Object.values(User)
+
+
+Objects DESTRUCTURE
+Destructure so that the key name can be used frequently
+const {anyKey : newName} = nameOfObject
+json
+{
+    name:"Omkar"
+    {}[]
+}
+
+
+Functions 1
+function addTwoNumbers(a,b){
+    return a+b
+}
+since the argument passed maybe undefined sometimes so check if the passed datatype is legitimate by cheking it inside the fucntion itself before executing the functions task
+
+
+Functions 2 (Handles arrays,objects)
