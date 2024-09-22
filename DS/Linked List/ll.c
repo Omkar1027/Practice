@@ -1,17 +1,15 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-struct Node
-{
+struct Node{
 	int data;
-	struct Node *next; // next
+	struct Node *next;
 };
-//typedef struct Node * NODEPTR;
-struct Node * start=NULL;
 
-struct Node * GetNode()
-{
-	return ( (struct Node *) malloc(sizeof(struct Node)));
+struct Node* start;
+
+struct Node* GetNode(){
+	return (struct Node*)malloc(sizeof(struct Node));
 }
 
 char choice;
@@ -29,59 +27,39 @@ void Display();
 
 int main()
 {
-    int ch;
-    //printf("%d",sizeof(struct Node *));
-	do
-	{
-		//clrscr();
-		printf("\n\n********** CHOICES *********");
-		printf("\n\n1 : CREATE LIST");
-		printf("\n2 : INSERT A NODE");
-		printf("\n3 : DELETE A NODE");
-		printf("\n4 : DISPLAY LIST");
-		printf("\n5 : EXIT");
-		printf("\n\nENTER YOUR CHOICE : \t");
-		scanf("%d",&ch);
-
-		switch(ch)
+	int c=0;
+	do{
+		printf("\n\n***Main Menu***");
+		printf("\n1: Create List\n2: Insert\n3: Delete\n4: Display\n5: Break\nEnter the choice: ");
+		scanf("%d",&c);
+		switch (c)
 		{
-			case 1: // create list
-			{
-				CreateList();
-				printf("\n\nNODES PRESENT : %d",CountNodes());
-			}
+		case 1:
+			CreateList();
 			break;
-
-			case 2: // insert node
-			{
-				Insert();
-			}
+		case 2:
+			Insert();
 			break;
-
-			case 3: // delete node
-			{
-				Delete();
-			}
+		case 3:
+			Delete();
 			break;
-
-			case 4: // display list
-			{
-				Display();
-			}
+		case 4:
+			Display();
 			break;
-
-			case 5: // exit
+		case 5:
+			printf("Exited the loop");
 			break;
-
-			default :
-				printf("\n\nWRONG ENTRY ! TRY AGAIN ...");
+		default:
+		printf("Invalid choice");
+			break;
 		}
-		//getch();
-	}while(ch!=5);
+	}while(c!=5);
+	return 0;
 }
 
 void CreateList()
 {
+	char c;
     struct Node *end=NULL;
     if(start!=NULL){
         printf("Already created list");
@@ -89,7 +67,7 @@ void CreateList()
     }
     do{
         struct Node *I=GetNode();
-        printf("Enter data to enter");
+        printf("Enter data to enter: ");
         scanf("%d",&I->data);
         I->next=NULL;
         if(start==NULL){
@@ -99,63 +77,42 @@ void CreateList()
             end->next=I;
         }
         end=I;
-        printf("Want to continue? (y/n):");
-        scanf("%c",&choice);
-    }while(choice=='y');
+        printf("Want to continue? (0/1): ");
+        scanf("%d",&c);
+    }while(c==1);
 }
+
 void Insert()
 {
-	int ch;
-	// we can check here - if the list is existing
-	do
-	{
-		//clrscr();
-
-		printf("\n\n******* INSERT OPTIONS *******");
-		printf("\n\n1 : INSERT BEFORE A NODE");
-		printf("\n2 : INSERT AFTER A NODE");
-		printf("\n3 : INSERT AT A POSITION");
-		printf("\n4 : DISPLAY");
-		printf("\n5 : BACK TO MAIN MENU");
-		printf("\n\nENTER YOUR CHOICE : \t");
-		scanf("%d",&ch);
-
-		switch(ch)
+	int c=0;
+	do{
+		printf("\n\n***Insert Menu***");
+		printf("\n1: Insert Before Value\n2: Insert After Value\n3: Insert At Position\n4: Display\n5: To Main Menu\nEnter the choice: ");
+		scanf("%d",&c);
+		switch (c)
 		{
-			case 1: // INSERT BEFORE
-			{
-				InsertBefore();
-			}
+		case 1:
+			InsertBefore();
 			break;
-
-			case 2: // insert after a node
-			{
-				InsertAfter();
-			}
+		case 2:
+			InsertAfter();
 			break;
-
-			case 3: // insert at a position
-			{
-				InsertAtPosition();
-			}
+		case 3:
+			InsertAtPosition();
 			break;
-
-			case 4: // display list
-			{
-				Display();
-			}
+		case 4:
+			Display();
 			break;
-
-			case 5: // BACK TO MAIN MENU
-			return;
-			//break;
-
-			default :
-				printf("\n\nWRONG ENTRY ! TRY AGAIN ...");
+		case 5:
+			printf("To Main Menu");
+			break;
+		default:
+		printf("Invalid choice");
+			break;
 		}
-		//getch();
-	}while(1);		//while(ch!=5);
+	}while(c!=5);
 }
+
 
 void InsertBefore(){
     int val;
@@ -169,12 +126,12 @@ void InsertBefore(){
     scanf("%d",&val);
 
     ptrAtVal=start;
-    while(ptrAtVal->data!=val || ptrAtVal!=NULL){
+    while(ptrAtVal->data!=val ){
         ptrAtVal=ptrAtVal->next;
-    }
-    if(ptrAtVal==NULL){
-        printf("Node not found");
-        return;
+		if(ptrAtVal!=NULL){
+			printf("Node not found");
+			return;
+		}
     }
 
     I=GetNode();
@@ -190,8 +147,8 @@ void InsertBefore(){
         while(ptrBeforeVal->next != ptrAtVal){
             ptrBeforeVal=ptrBeforeVal->next;
         }
+		ptrBeforeVal->next=I;
         I->next=ptrAtVal;
-        ptrBeforeVal->next=I;
     }
 }
 
@@ -203,18 +160,17 @@ void InsertAfter(){
         return;
     }
 
-    printf("Enter the element before which node is to be added: ");
+    printf("Enter the element after which node is to be added: ");
     scanf("%d",&val);
 
     ptrAtVal=start;
-    while(ptrAtVal->data!=val || ptrAtVal!=NULL){
+    while(ptrAtVal->data!=val){
         ptrAtVal=ptrAtVal->next;
+		if(ptrAtVal==NULL){
+			printf("Node not found");
+			return;
+		}
     }
-    if(ptrAtVal==NULL){
-        printf("Node not found");
-        return;
-    }
-
     I=GetNode();
     printf("Enter the value to be inserted:");
     scanf("%d",&I->data);
@@ -248,8 +204,8 @@ void InsertAtPosition(){
         return;
     }
     totalNodes=CountNodes();
-    printf("total nodes is %d", totalNodes);
-    printf("Enter value to enter at position between %d to %d", 1, totalNodes+1);
+    printf("Total number of  nodes is %d\n", totalNodes);
+    printf("Enter value to enter at position between %d to %d: ", 1, totalNodes+1);
     scanf("%d",&pos);
 
     if(pos<1 || pos>totalNodes+1){
@@ -275,50 +231,31 @@ void InsertAtPosition(){
 }
 void Delete()
 {
-	int ch;
-	do
-	{
-		//clrscr();
-		// we can check here - if list is existing
-		printf("\n\n******* DELETE OPTIONS *******");
-		printf("\n\n1 : DELETE NODE BY VALUE");
-		printf("\n2 : DELETE NODE AT A POSITION");
-		printf("\n3 : DISPLAY");
-		printf("\n4 : BACK TO MAIN MENU");
-		printf("\n\nENTER YOUR CHOICE : \t");
-		scanf("%d",&ch);
-
-		switch(ch)
-		{
-			case 1: // DELETE BY VALUE
-			{
-				DeleteByValue();
-			}
+	int c=0;
+	do{
+		printf("\n\n***Delete Menu***");
+		printf("\n1: Delete By Value\n2: Delete At Position\n3: Display\n4: Break\nEnter the choice: ");
+		scanf("%d",&c);
+		switch (c){
+		case 1:
+			DeleteByValue();
 			break;
-
-			case 2: // delete node at a position
-			{
-				DeleteAtPosition();
-			}
+		case 2:
+			DeleteAtPosition();
 			break;
-
-			case 3: //display
-			{
-				Display();
-			}
+		case 3:
+			Display();
 			break;
-
-			case 4: // BACK TO MAIN MENU
-			return;
-			//break;
-
-			default :
-				printf("\n\nWRONG ENTRY ! TRY AGAIN ...");
+		case 4:
+			printf("To Main Menu");
+			break;
+		default:
+		printf("Invalid choice");
+			break;
 		}
-		getchar();
-	}while(1);		//while(ch!=4);
-
+	}while(c!=4);
 }
+
 void DeleteByValue()
 {
     int val;
@@ -326,7 +263,7 @@ void DeleteByValue()
     if(start==NULL){
         printf("LL is empty");
     } 
-    printf("Enter the value to be deleted");
+    printf("Enter the value to be deleted: ");
     scanf("%d",&val);
 
     ptrAtValue=start;
@@ -343,10 +280,13 @@ void DeleteByValue()
     }
     else{
         ptrBeforeValue=start;
-        while(ptrBeforeValue!=ptrAtValue)
+        while(ptrBeforeValue->next!=ptrAtValue)
             ptrBeforeValue=ptrBeforeValue->next;
         ptrBeforeValue->next=ptrAtValue->next;
     }
+	printf("The node having data '%d' is deleted", ptrAtValue->data);
+	ptrAtValue->next=NULL;
+	free(ptrAtValue);
 }
 
 void DeleteAtPosition()
@@ -354,4 +294,42 @@ void DeleteAtPosition()
     int pos, totalNodes;
     struct Node *ptrBeforePos,*ptrAtPos;
 
+	if(start==NULL){
+		printf("Linked List is Empty");
+		return;
+	}
+	totalNodes=CountNodes();
+	printf("Enter the position to delete element between %d to %d: ",1,totalNodes);
+	scanf("%d",&pos);
+	if(pos<0 || pos>totalNodes){
+		printf("Position is out of bound");
+		return;
+	}
+	ptrAtPos=start;
+	for(int t=1;t<pos;t++){
+		ptrBeforePos=ptrAtPos;
+		ptrAtPos=ptrAtPos->next;
+	}
+	if(pos==1){
+		start=start->next;
+	}
+	else{
+		ptrBeforePos->next=ptrAtPos->next;
+	}
+	printf("\nThe node having data '%d' is deleted", ptrAtPos->data);
+	ptrAtPos->next=NULL;
+	free(ptrAtPos);
+}
+
+void Display(){
+	if(start==NULL){
+		printf("\nLinked List is Empty");
+		return;
+	}
+	struct Node* temp=start;
+	while(temp!=NULL){
+		printf("%d -> ",temp->data);
+		temp=temp->next;
+	}
+	printf("NULL\n");
 }

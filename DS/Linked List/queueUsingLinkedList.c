@@ -50,7 +50,7 @@ void display(){
         printf("%d -> ",temp->data);
         temp=temp->link;
     }
-    printf("->rear\n");
+    printf("rear\n");
 }
 
 void peek(){
@@ -58,7 +58,7 @@ void peek(){
         printf("Queue is empty.\n");
     }
     else{
-        printf("The value at front of the queue is: %d",front->data);
+        printf("The value at front of the queue is: %d\n",front->data);
     }
 }
 
@@ -66,12 +66,12 @@ int main(int argc, char const *argv[])
 {
     int c=0,ele;
     do{
-    printf("\n1 Enqueue, 2 Dequeue, 3 Display, 4 Peek, 5 Break\n");
+    printf("\n1: Enqueue, 2: Dequeue, 3: Display, 4: Peek, 5: Break\nEnter your choice: ");
     scanf("%d",&c);
         switch (c)
         {
         case 1:
-            printf("Enter element to push: ");
+            printf("Enter element to enqueue: ");
             scanf("%d",&ele);
             enqueue(ele);
             break;

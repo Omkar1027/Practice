@@ -49,14 +49,15 @@ void display(){
             printf("-> %d",temp->data);
             temp=temp->link;
         }
+        printf("\n");
 }
 
 void peek(){
     if(top==NULL){
-        printf("Stack is empty");
+        printf("Stack is empty\n");
     }
     else{
-        printf("Top element is: %d", top->data );
+        printf("Top element is: %d\n", top->data );
     }
 }
 
@@ -64,7 +65,7 @@ int main(int argc, char const *argv[])
 {
     int c=0,ele;
     do{
-    printf("\n1 push, 2 pop, 3 display, 4 peek, 5 break\n");
+    printf("\n1: Push, 2: Pop, 3: Display, 4: Peek, 5: Break\nEnter choice: ");
     scanf("%d",&c);
         switch (c)
         {
@@ -83,7 +84,7 @@ int main(int argc, char const *argv[])
             peek();
             break;
         case 5:
-            printf("adios amigos");
+            printf("adios amigos!!");
             break;
         default:
             printf("Invalid choice");
