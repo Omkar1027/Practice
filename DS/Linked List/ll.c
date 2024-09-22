@@ -330,7 +330,7 @@ void DeleteByValue()
     scanf("%d",&val);
 
     ptrAtValue=start;
-    while(ptrAtValue!=val && ptrAtValue!=NULL){
+    while(ptrAtValue->data!=val && ptrAtValue!=NULL){
         ptrAtValue=ptrAtValue->next;
     }
     if(ptrAtValue==NULL){

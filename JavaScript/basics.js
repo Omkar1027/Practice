@@ -66,6 +66,7 @@ let n=Date.toString()
 console.log(n.getFullYear());
 */
 
+/*
 const abc=[1,2,[1,3],2,[2,[3]]]
 console.log(abc.flat(2));
 
@@ -91,4 +92,24 @@ function greeting(name){
     console.log("Hello",name);
 }
 greeting()
+*/
 
+const a=10
+{
+    const a=9
+    console.log(a);
+    function b(){
+        console.log("99");     
+    }    
+}
+console.log(b());
+
+function aaa(){ let user = "om "
+    console.log(this.user)}
+
+(function a(){
+    console.log("1")
+})();
+((name)=>(
+    console.log(name)
+))("om")
