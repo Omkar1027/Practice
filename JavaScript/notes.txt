@@ -113,11 +113,11 @@ since the argument passed maybe undefined sometimes so check if the passed datat
 
 Functions 2 (Handles arrays,objects)
 when passing objects in functions, it doesnt check if it actually exists in any object or not... thus need to be CAREFUL
-can pass array inside fucntion and access ad arr[1]
+can pass array inside fucntion and access as arr[1]
 
 
 Scope
-var, nothing        global
+var, 'nothing'        global
 let, const          local
 
 
@@ -129,14 +129,14 @@ main{
     }
 }
 if a function is assigned to a variable, then it cannot be accesed before the declaration
-else it can be accessesd before too
+else if its declared independtently, it can be accessesd before too
 
 
 This, Arrow
 this refers to the context of the obj in which it is
 THE THIS USED INSIDE THE MAIN FUNCTION GIVES {} AND NOT WINDOW
 () => {} or () => ()
-if using {} use return keyword, else just write in inside ()
+if using {} use return keyword, else just write in inside wala ()
 
 
 IIFE
@@ -149,9 +149,9 @@ TO WRITE TWO IIFE IN SAME CODE, ";" IS USED AFTER THE FIRST IIFE
 
 
 Execution
-first global execution context in this context
-second fucntion exection context 
-third eval execution context
+A global execution context in this context
+B fucntion exection context 
+C eval execution context
 There are two phases 1. Memory creation phase 2.Execution phase
 new executional context is created for each function
 call stack is just like the lifo and each function called follows it
@@ -160,3 +160,33 @@ call stack is just like the lifo and each function called follows it
 Loops
 ?? used to assign the values to things which are received either null, undefined
 var arr= undefined ?? 10
+
+
+High array Loops
+For of: Iterates without value initialization
+    const greetings = "Hello world!"
+    for (const greet of greetings) {
+        //console.log(`Each char is ${greet}`)
+    }
+MAPS
+just stores two values
+    const map = new Map()
+    map.set('IN', "India")
+can destructure maps like 
+    for (const [key,value] of map){
+    console.log(key,"->",value)
+    }
+WE CANNOT GET THE VALUES OF OBJECTS USING ITERABLE FOR OF, IN
+We can pass an fucntionn to iterate an array using the for each loop 
+    array_name.forEach((anyName)=>{
+        console.log(anyName.nameOfObjectIntheJson)
+    })
+
+
+can access the values in the object inside if a json file using
+    let UserBooks= books.filter((bk)=> (bk.publish<2000))
+    console.log(UserBooks)
+we can use the map function just like the filter function 
+also it can be used .map().map. which carries forward the values
+
+
