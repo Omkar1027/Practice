@@ -6,7 +6,7 @@ struct Node{
 	struct Node *next;
 };
 
-struct Node* start;
+struct Node* start=NULL;
 
 struct Node* GetNode(){
 	return (struct Node*)malloc(sizeof(struct Node));
@@ -47,7 +47,7 @@ int main()
 		case 4:
 			Display();
 			break;
-		case 5:
+        case 5:
 			Search();
 			break;
 		case 6:
@@ -73,7 +73,6 @@ void CreateList()
         struct Node *I=GetNode();
         printf("Enter data to enter: ");
         scanf("%d",&I->data);
-        I->next=NULL;
         if(start==NULL){
             start=I;
         }
@@ -81,6 +80,7 @@ void CreateList()
             end->next=I;
         }
         end=I;
+        I->next=start;
         printf("Want to continue? (0/1): ");
         scanf("%d",&c);
     }while(c==1);
@@ -130,30 +130,29 @@ void InsertBefore(){
     scanf("%d",&val);
 
     ptrAtVal=start;
-    while(ptrAtVal->data!=val ){
+    while(ptrAtVal->data!=val && ptrAtVal->next!=start){ 
         ptrAtVal=ptrAtVal->next;
-		if(ptrAtVal!=NULL){
-			printf("Node not found");
-			return;
-		}
+    }
+    if(ptrAtVal->data!=val){
+        printf("Node not found");
+        return;
     }
 
     I=GetNode();
     printf("Enter the value to be inserted:");
     scanf("%d",&I->data);
 
+    ptrBeforeVal=start;
+    while(ptrBeforeVal->next != ptrAtVal){
+        ptrBeforeVal=ptrBeforeVal->next;
+    }
+    ptrBeforeVal->next=I;
+    I->next=ptrAtVal;
+
     if(ptrAtVal==start){
-        I->next=start;
         start=I;
     }
-    else{
-        ptrBeforeVal=start;
-        while(ptrBeforeVal->next != ptrAtVal){
-            ptrBeforeVal=ptrBeforeVal->next;
-        }
-		ptrBeforeVal->next=I;
-        I->next=ptrAtVal;
-    }
+
 }
 
 void InsertAfter(){
@@ -168,13 +167,14 @@ void InsertAfter(){
     scanf("%d",&val);
 
     ptrAtVal=start;
-    while(ptrAtVal->data!=val){
+    while(ptrAtVal->data!=val && ptrAtVal->next!=start){//
         ptrAtVal=ptrAtVal->next;
-		if(ptrAtVal==NULL){
-			printf("Node not found");
-			return;
-		}
     }
+    if(ptrAtVal->data!=val){
+        printf("Node not found");
+        return;
+    }
+
     I=GetNode();
     printf("Enter the value to be inserted:");
     scanf("%d",&I->data);
@@ -186,13 +186,13 @@ void InsertAfter(){
 int CountNodes()
 {
 	struct Node * temp = start;
-	int count = 0;
-	if(temp == NULL)
+	int count = 1;
+	if(start == NULL)
 	{
 		printf("\n\nLIST IS EMPTY !!!");
 		return 0;
 	}
-	while(temp != NULL)
+	while(temp->next != start)
 	{
 		temp = temp->next;
 		count++;
@@ -202,7 +202,7 @@ int CountNodes()
 
 void InsertAtPosition(){
     int pos, totalNodes ;
-    struct Node *ptrBeforePos, *I;
+    struct Node *ptrBeforePos,*ptrAtPos, *I;
     if(start==NULL){
         printf("LL is empty");
         return;
@@ -212,33 +212,33 @@ void InsertAtPosition(){
     printf("Enter value to enter at position between %d to %d: ", 1, totalNodes+1);
     scanf("%d",&pos);
 
-    if(pos<1 || pos>totalNodes+1){
-        printf("Invalid Nodes position");
-        return;
-    }
+    ptrAtPos=start;
+    for(int i=0;i<pos-1;i++)
+        ptrAtPos=ptrAtPos->next;
+    
+    ptrBeforePos=start;
+    while(ptrBeforePos->next!=ptrAtPos)
+        ptrBeforePos=ptrBeforePos->next;
+    
     I=GetNode();
     printf("Enter the value to be inserted:");
     scanf("%d",&I->data);
 
-    if(pos==1){
-        I->next=start;
-        start=I;
-        return;
-    }
-    
-    ptrBeforePos=start;
-    for(int i=0;i<pos-2;i++){
-        ptrBeforePos= ptrBeforePos->next;
-    }
     I->next=ptrBeforePos->next;
     ptrBeforePos->next=I;
+
+    if(pos==1){
+        start=I;
+    }
+
+
 }
 void Delete()
 {
 	int c=0;
 	do{
 		printf("\n\n***Delete Menu***");
-		printf("\n1: Delete By Value\n2: Delete At Position\n3: Display\n4: To Main Menu\nEnter the choice: ");
+		printf("\n1: Delete By Value\n2: Delete At Position\n3: Display\n4: Break\nEnter the choice: ");
 		scanf("%d",&c);
 		switch (c){
 		case 1:
@@ -271,23 +271,29 @@ void DeleteByValue()
     scanf("%d",&val);
 
     ptrAtValue=start;
-    while(ptrAtValue->data!=val && ptrAtValue!=NULL){
+    while(ptrAtValue->data!=val && ptrAtValue->next!=start){
         ptrAtValue=ptrAtValue->next;
     }
-    if(ptrAtValue==NULL){
+    if(ptrAtValue->next==start){
         printf("Value not found in LL");
         return;
     }
 
-    if(ptrAtValue==start){
-        start=start->next;
+    ptrBeforeValue=start;
+    while(ptrBeforeValue->next!=ptrAtValue)
+        ptrBeforeValue=ptrBeforeValue->next;
+    
+    if(ptrAtValue==ptrBeforeValue){
+        start=NULL;
     }
     else{
-        ptrBeforeValue=start;
-        while(ptrBeforeValue->next!=ptrAtValue)
-            ptrBeforeValue=ptrBeforeValue->next;
+        
         ptrBeforeValue->next=ptrAtValue->next;
+        if(ptrAtValue==start){
+            start=start->next;
     }
+    }
+    
 	printf("The node having data '%d' is deleted", ptrAtValue->data);
 	ptrAtValue->next=NULL;
 	free(ptrAtValue);
@@ -303,22 +309,31 @@ void DeleteAtPosition()
 		return;
 	}
 	totalNodes=CountNodes();
+    printf("Total Nodes are: %d\n",totalNodes);
 	printf("Enter the position to delete element between %d to %d: ",1,totalNodes);
 	scanf("%d",&pos);
-	if(pos<0 || pos>totalNodes){
+	if(pos<1 || pos>totalNodes){
 		printf("Position is out of bound");
 		return;
 	}
+    
 	ptrAtPos=start;
-	for(int t=1;t<pos;t++){
-		ptrBeforePos=ptrAtPos;
+	for(int t=0;t<pos-1;t++){
 		ptrAtPos=ptrAtPos->next;
 	}
-	if(pos==1){
-		start=start->next;
+
+    ptrBeforePos=start;
+    while(ptrBeforePos->next != ptrAtPos)
+		ptrBeforePos = ptrBeforePos->next;
+
+	if(ptrBeforePos==ptrAtPos){
+		start=NULL;
 	}
 	else{
 		ptrBeforePos->next=ptrAtPos->next;
+        if(ptrAtPos==start){
+            start=start->next;
+        }
 	}
 	printf("\nThe node having data '%d' is deleted", ptrAtPos->data);
 	ptrAtPos->next=NULL;
@@ -331,11 +346,11 @@ void Display(){
 		return;
 	}
 	struct Node* temp=start;
-	while(temp!=NULL){
+	while(temp->next!=start){
 		printf("%d -> ",temp->data);
 		temp=temp->next;
 	}
-	printf("NULL\n");
+    printf("%d",temp->data);
 }
 
 void Search() {
@@ -350,12 +365,12 @@ void Search() {
         return;
     }
     while (temp != NULL) {
-        if (temp->data == val) {
+        if (temp != start) {
+            pos++;
             printf("Element %d found at position %d.\n", val, pos);
             return; 
         }
-        temp = temp->next;
-        pos++; 
+        temp = temp->next; 
     }
     printf("Element %d not found.\n", val);
 }

@@ -190,3 +190,33 @@ we can use the map function just like the filter function
 also it can be used .map().map. which carries forward the values
 
 
+
+DOM
+document.getElementById('title').get attribute()
+
+title.style
+
+title.innerText - Doesn't include hidden
+title.textContent - includes
+title.innerHtml - includes html type
+
+Query selector = selects first h1 or li or p
+document.querySelectorAll = selects all 
+
+Nodelist, HtmlCollection cannot be manipulated as arrays inless they are converted by:
+Array.From('NameofTheVariableThatHoldsIt')
+1 get all the elements by querySelectorAll
+2 store it inside A
+3 convert it to array and store it in B 
+4 acces each element by for each or any loop and then manipulate by item.style.color='cyan'
+
+
+Create a element in html using js
+const div=document.createElement('div')
+then set names using
+div.className("No")
+THEN APPEND IT TO THE MAIN DOCUMENT AS:
+document.body.appendChild(div)
+
+
+Edit and delte

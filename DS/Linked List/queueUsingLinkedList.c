@@ -85,7 +85,7 @@ int main(int argc, char const *argv[])
             peek();
             break;
         case 5:
-            printf("adios amigos");
+            printf("Exited the loop");
             break;
         default:
             printf("Invalid choice");

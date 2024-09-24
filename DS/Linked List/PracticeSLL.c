@@ -406,3 +406,25 @@ void Display(){
 		temp = temp->link;
 	}
 }
+
+void Search() {
+    struct Node* temp = GetNode();
+	temp=start;
+    int pos=1,val;
+
+    printf("Enter element to search: ");
+    scanf("%d",&val);
+    
+    if(temp==NULL){
+        printf("Linked list does not exist.\n");
+        return;
+    }
+    while (temp != NULL) {
+        if (temp->data == val) {
+            printf("Element %d found at position %d.\n", val, pos);
+            return; 
+        }
+        temp = temp->next;
+        pos++; 
+    }
+    printf("Element %d not found.\n", val);
