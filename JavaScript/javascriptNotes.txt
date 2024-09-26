@@ -1,0 +1,222 @@
+only use const and let to declare... dont use var or just define the data
+
+
+Primitive datatypes: Number(number), Bigint(bigint), Boolean(boolean), String(string), Null(object), Undefined(undefined), Symbol(function)
+
+
+"33" -> 33
+"33abc" -> NaN
+true -> 1 false -> 0
+1 -> true 0 -> false
+"" -> false
+"abc" -> true
+
+
+while comparison, if comparing with == the string is not converted to Number
+But if comparing with > or < the string is convarted to number
+console.log(null==0)  false //not converted
+console.log(null<=0)  true //converted
+console.log(null<0)   false //converted
+console.log(undefined==0)  false
+console.log(undefined<=0)  false
+console.log(undefined<0)   false
+
+
+Non-primitive datatypes: Array(object), Object(object), Function(function)
+
+
+Stack(Primitive) -> It gives a copy of the data 
+let a='omkar'
+let b=a
+b='Omkar'
+console.table(a+b); //omkarOmkar
+Heap(Non-primitive) -> It gives the address/reference of the data of the data 
+
+
+there are different types of functions to manipulate strings
+they are not used on normal String(string), its used on String(object) which is declared as follows
+let str=new String("abc")
+Eg. tolower,toupper, slice, trim, split
+
+
+Using functions on number
+Eg: let num = 123.99 num.toPrecision(3) // 124
+    let num = 10000000 num.toLocaleString('en-IN) //10,00,000
+Using math fuunctions in using Math.round(num //124)
+Eg: Math.random()
+    let min=10, max=20
+    console.log(Math.floor((Math.random()*(max-min+1)) + min));
+
+
+Array 1
+declare as []
+use arr.push()
+    arr.pop()
+    arr.shift()
+    arr.unshift()
+SLICE AND SPLICE
+in slice the portion is extracted excluding the last index and no change in original array
+in splice the last index included and removed the extracted part from original array
+
+Array 2
+declare it inside []
+The functions used to join two or more arrays
+a.concat(b)
+x=[...a,...b]
+if x=[a,b,[a,b,c],d[e,[f]]]
+then         x.flat()
+To check                         x.isArray
+To convert                       x.from("Omkar")
+To convert already existing      x.of(score1,score2,score3)
+
+
+Objects 1 (LITERALS)
+declare it as key value pairs, ':' , inside {}
+access as obj.name
+BUT THE CORRECT SYNTAX IS obj["name"]
+to make it unchangeable use obj.freeze
+FUNCTIONS
+declared as normal variables
+obj.greet=function(){
+    console.log(`Hello${obj.name}`)
+}
+the [] use is mandatory in some cases
+
+
+Objects 2 (SINGLETON)
+To join two or more Objects
+const obj4 = Object.assign({}, obj1, obj2, obj3)
+      obj4 = Object.assign(...obj1, ...obj2, ...obj3)
+make array of all objects and access it using array
+users[1].email
+TO ACCESS ALL THE KEYS OR VALUES IN A Object
+Object.keys(User)
+Object.values(User)
+
+
+Objects DESTRUCTURE
+Destructure so that the key name can be used frequently
+const {anyKey : newName} = nameOfObject
+json
+{
+    name:"Omkar"
+    {}[]
+}
+
+
+Functions 1
+function addTwoNumbers(a,b){
+    return a+b
+}
+since the argument passed maybe undefined sometimes so check if the passed datatype is legitimate by cheking it inside the fucntion itself before executing the functions task
+
+
+Functions 2 (Handles arrays,objects)
+when passing objects in functions, it doesnt check if it actually exists in any object or not... thus need to be CAREFUL
+can pass array inside fucntion and access as arr[1]
+
+
+Scope
+var, 'nothing'        global
+let, const          local
+
+
+Scope level
+a function A can access all elements outside it but cannot access elements which are inside a function B , which is inside the function A
+main{
+    A{
+        B{}
+    }
+}
+if a function is assigned to a variable, then it cannot be accesed before the declaration
+else if its declared independtently, it can be accessesd before too
+
+
+This, Arrow
+this refers to the context of the obj in which it is
+THE THIS USED INSIDE THE MAIN FUNCTION GIVES {} AND NOT WINDOW
+() => {} or () => ()
+if using {} use return keyword, else just write in inside wala ()
+
+
+IIFE
+to invoke a function as soon as file is started
+(function a(){
+    console.log("1")
+})();
+TO WRITE TWO IIFE IN SAME CODE, ";" IS USED AFTER THE FIRST IIFE
+
+
+
+Execution
+A global execution context in this context
+B fucntion exection context 
+C eval execution context
+There are two phases 1. Memory creation phase 2.Execution phase
+new executional context is created for each function
+call stack is just like the lifo and each function called follows it
+
+
+Loops
+?? used to assign the values to things which are received either null, undefined
+var arr= undefined ?? 10
+
+
+High array Loops
+For of: Iterates without value initialization
+    const greetings = "Hello world!"
+    for (const greet of greetings) {
+        //console.log(`Each char is ${greet}`)
+    }
+MAPS
+just stores two values
+    const map = new Map()
+    map.set('IN', "India")
+can destructure maps like 
+    for (const [key,value] of map){
+    console.log(key,"->",value)
+    }
+WE CANNOT GET THE VALUES OF OBJECTS USING ITERABLE FOR OF, IN
+We can pass an fucntionn to iterate an array using the for each loop 
+    array_name.forEach((anyName)=>{
+        console.log(anyName.nameOfObjectIntheJson)
+    })
+
+
+can access the values in the object inside if a json file using
+    let UserBooks= books.filter((bk)=> (bk.publish<2000))
+    console.log(UserBooks)
+we can use the map function just like the filter function 
+also it can be used .map().map. which carries forward the values
+
+
+
+DOM
+document.getElementById('title').get attribute()
+
+title.style
+
+title.innerText - Doesn't include hidden
+title.textContent - includes
+title.innerHtml - includes html type
+
+Query selector = selects first h1 or li or p
+document.querySelectorAll = selects all 
+
+Nodelist, HtmlCollection cannot be manipulated as arrays inless they are converted by:
+Array.From('NameofTheVariableThatHoldsIt')
+1 get all the elements by querySelectorAll
+2 store it inside A
+3 convert it to array and store it in B 
+4 acces each element by for each or any loop and then manipulate by item.style.color='cyan'
+
+
+Create a element in html using js
+const div=document.createElement('div')
+then set names using
+div.className("No")
+THEN APPEND IT TO THE MAIN DOCUMENT AS:
+document.body.appendChild(div)
+
+
+Edit and delte

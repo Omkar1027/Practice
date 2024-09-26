@@ -1,0 +1,9 @@
+CIRCULAR
+Create:         one line add and remove
+Insert Before:  whole last func
+Insert After:   NO CHANGE
+Insert At:      whole last func
+Delete Val:     whole last funcn
+Delete Pos:     ptrbefore == ptrat
+                start==Null
+                if start start=start->next

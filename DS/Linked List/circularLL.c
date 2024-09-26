@@ -364,13 +364,17 @@ void Search() {
         printf("Linked list does not exist.\n");
         return;
     }
-    while (temp != NULL) {
-        if (temp != start) {
-            pos++;
+    while (temp->next != start) {
+        if (temp->data == val) {
             printf("Element %d found at position %d.\n", val, pos);
             return; 
         }
+        pos++;
         temp = temp->next; 
+    }
+    if(temp->data==val){
+        printf("Element %d found at position %d.\n", val, pos++);
+        return; 
     }
     printf("Element %d not found.\n", val);
 }

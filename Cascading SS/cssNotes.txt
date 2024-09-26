@@ -1,0 +1,13 @@
+priority
+0. inline 1. id 2. class 3. element
+
+box of div imp elements:
+height 
+width
+margin
+padding
+border
+backgorund color
+
+% of the screen / px / em is equal to the pixel of the parnent element /
+rem equal to the font size of the parent html font size 

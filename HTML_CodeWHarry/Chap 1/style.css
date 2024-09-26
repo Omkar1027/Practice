@@ -1,0 +1,10 @@
+#box{
+    height: 100px;
+    width: 100px ;
+    padding: 22rem;
+    margin: 100px;
+    border: 9px solid black;
+    background-color: #000053;
+    font-size: large;
+}
+
