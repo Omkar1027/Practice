@@ -60,22 +60,63 @@ sns.boxplot(x='propertyType', y='exactPrice', data=df)
 plt.xticks(rotation=90)
 plt.title('Price Distribution by Property Type')
 plt.show()
-# Heatmap for average price per square foot by region (locality)
-pivot_table = df.pivot_table(values='sqftPrice', index='locality', aggfunc='mean')
 
-plt.figure(figsize=(10, 12))
-sns.heatmap(pivot_table, annot=True, fmt=".2f", cmap='coolwarm')
-plt.title('Heatmap of Average Price per Square Foot by Locality')
-plt.show()
-# Scatter plot of exactPrice vs sqftPrice by region
-plt.figure(figsize=(10, 6))
-sns.scatterplot(x='sqftPrice', y='exactPrice', hue='locality', data=df)
-plt.title('Relationship Between Sqft Price and Exact Price by Locality')
-plt.show()
-# Affordability metrics per locality
-affordability_metrics = region_group.copy()
-affordability_metrics['PriceToIncomeRatio'] = affordability_metrics['AvgExactPrice'] / 500000  # Assuming an average income of 500,000
-affordability_metrics['AffordabilityIndex'] = affordability_metrics['PriceToIncomeRatio']
+# Simple Heatmap for average price per square foot by region (locality)
+# Limiting to top 10 localities with highest average price per square foot
+top_localities = df.groupby('locality')['sqftPrice'].mean().nlargest(10).index
+pivot_table_simple = df[df['locality'].isin(top_localities)].pivot_table(values='sqftPrice', index='locality', aggfunc='mean')
 
-# Show affordability index
-print(affordability_metrics[['locality', 'AffordabilityIndex']])
+plt.figure(figsize=(6, 8))
+sns.heatmap(pivot_table_simple, annot=True, fmt=".2f", cmap='coolwarm', cbar=False)
+plt.title('Average Price per Sqft (Top 10 Localities)')
+plt.show()
+
+# Simple Scatter plot of exactPrice vs sqftPrice (sampling for performance)
+# Sampling 1000 rows for a simpler plot
+df_sample = df.sample(n=1000, random_state=42)
+
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='sqftPrice', y='exactPrice', hue='locality', data=df_sample, legend=False)
+plt.title('Sqft Price vs Exact Price (Sampled Data)')
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # Heatmap for average price per square foot by region (locality)
+# pivot_table = df.pivot_table(values='sqftPrice', index='locality', aggfunc='mean')
+
+# plt.figure(figsize=(10, 12))
+# sns.heatmap(pivot_table, annot=True, fmt=".2f", cmap='coolwarm')
+# plt.title('Heatmap of Average Price per Square Foot by Locality')
+# plt.show()
+# # Scatter plot of exactPrice vs sqftPrice by region
+# plt.figure(figsize=(10, 6))
+# sns.scatterplot(x='sqftPrice', y='exactPrice', hue='locality', data=df)
+# plt.title('Relationship Between Sqft Price and Exact Price by Locality')
+# plt.show()
+# # Affordability metrics per locality
+# affordability_metrics = region_group.copy()
+# affordability_metrics['PriceToIncomeRatio'] = affordability_metrics['AvgExactPrice'] / 500000  # Assuming an average income of 500,000
+# affordability_metrics['AffordabilityIndex'] = affordability_metrics['PriceToIncomeRatio']
+
+# # Show affordability index
+# print(affordability_metrics[['locality', 'AffordabilityIndex']])

@@ -92,16 +92,3 @@ ax.add_patch(pgon)
 #dpi, which controls the dots-per-inch resolution, and
 #bbox_inches, which can trim the whitespace around the actual figure
 #plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-

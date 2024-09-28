@@ -7,7 +7,7 @@ width
 margin
 padding
 border
-backgorund color
+backgorund color 
 
 % of the screen / px / em is equal to the pixel of the parnent element /
 rem equal to the font size of the parent html font size 
