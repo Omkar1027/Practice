@@ -3,6 +3,41 @@
   "configurations": [
     {
       "type": "java",
+      "name": "theBinary",
+      "request": "launch",
+      "mainClass": "theBinary",
+      "projectName": "tpDaily_d15d41bb"
+    },
+    {
+      "type": "java",
+      "name": "binary",
+      "request": "launch",
+      "mainClass": "binary",
+      "projectName": "tpDaily_d15d41bb"
+    },
+    {
+      "type": "java",
+      "name": "BST",
+      "request": "launch",
+      "mainClass": "BST",
+      "projectName": "tpDaily_d15d41bb"
+    },
+    {
+      "type": "java",
+      "name": "expression",
+      "request": "launch",
+      "mainClass": "expression",
+      "projectName": "tpDaily_d15d41bb"
+    },
+    {
+      "type": "java",
+      "name": "PrefixToBinaryTree",
+      "request": "launch",
+      "mainClass": "PrefixToBinaryTree",
+      "projectName": "tpDaily_d15d41bb"
+    },
+    {
+      "type": "java",
       "name": "t",
       "request": "launch",
       "mainClass": "t",

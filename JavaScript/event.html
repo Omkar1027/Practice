@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event</title>
+</head>
+<body>
+    <h1>Omkar</h1>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+
+    
+</body>
+
+<script>
+let didSet,i=0
+    
+    const z=function(){
+        if(i>=0){
+    console.log("Omkat")
+    i++
+
+    }
+    }
+    
+
+    
+
+
+
+    
+
+    
+    const startB=document.querySelector("#start").addEventListener("click",function(){
+        if(i==0){
+            didSet= setInterval(z, 1000)
+        }
+        
+       didSet=null
+
+        })
+    
+        document.querySelector("#stop").addEventListener("click",function(){
+        clearInterval(didSet)
+        i=0
+        })
+
+    
+</script>
+</html>

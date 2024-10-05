@@ -220,3 +220,18 @@ document.body.appendChild(div)
 
 
 Edit and delte
+
+
+events in js
+events are used to register some actions performed by the user like click, hover
+if an event is inside an event which has an event listner, then to stop the trigger of both the events include
+e.stopPropogation;
+to remove a element get its parent node by 
+e.target.parentNode
+
+
+Async
+Blocking codes blocks the flow
+set timeout 2
+set interval 2
+fetch()
