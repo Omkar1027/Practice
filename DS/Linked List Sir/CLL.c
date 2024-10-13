@@ -10,7 +10,7 @@ struct Node
 	int data;
 	struct Node *link;
 };
-//typedef struct Node * NODEPTR;
+//typedef struct Node * NODEPTR; 
 struct Node * start=NULL;
 
 struct Node * GetNode()
