@@ -64,6 +64,7 @@ void peek(){
 int main(int argc, char const *argv[])
 {
     int c=0,ele;
+    printf("%d",(10%2));
     do{
     printf("\n1: Push, 2: Pop, 3: Display, 4: Peek, 5: Break\nEnter choice: ");
     scanf("%d",&c);

@@ -167,7 +167,7 @@ void InsertAfter(){
     scanf("%d",&val);
 
     ptrAtVal=start;
-    while(ptrAtVal->data!=val && ptrAtVal->next!=start){//
+    while(ptrAtVal->data!=val && ptrAtVal->next!=start){
         ptrAtVal=ptrAtVal->next;
     }
     if(ptrAtVal->data!=val){

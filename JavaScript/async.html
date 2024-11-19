@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Omkar Async</h1>
+    <button id="stop">stop</button>
+    <button id="start">stop</button>
+</body>
+<script>
+    const changeh1 = function(){
+        document.querySelector('h1').innerHTML = "Done"
+    }
+
+    
+    const changeing = setInterval(changeh1,1000)
+
+    document.querySelector('#stop').addEventListener('click', function(){
+        clearInterval(changeing)
+    })
+</script>
+</html>

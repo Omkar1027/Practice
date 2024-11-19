@@ -309,15 +309,15 @@ void DeleteAtPosition()
 		printf("Position is out of bound");
 		return;
 	}
-	ptrAtPos=start;
-	for(int t=1;t<pos;t++){
-		ptrBeforePos=ptrAtPos;
-		ptrAtPos=ptrAtPos->next;
-	}
 	if(pos==1){
 		start=start->next;
 	}
 	else{
+		ptrAtPos=start;
+		for(int t=1;t<pos;t++){
+			ptrBeforePos=ptrAtPos;
+			ptrAtPos=ptrAtPos->next;
+		}
 		ptrBeforePos->next=ptrAtPos->next;
 	}
 	printf("\nThe node having data '%d' is deleted", ptrAtPos->data);

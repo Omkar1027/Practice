@@ -212,11 +212,11 @@ Array.From('NameofTheVariableThatHoldsIt')
 
 
 Create a element in html using js
-const div=document.createElement('div')
+    const div=document.createElement('div')
 then set names using
-div.className("No")
+    div.className("No")
 THEN APPEND IT TO THE MAIN DOCUMENT AS:
-document.body.appendChild(div)
+    document.body.appendChild(div)
 
 
 Edit and delte
@@ -225,13 +225,17 @@ Edit and delte
 events in js
 events are used to register some actions performed by the user like click, hover
 if an event is inside an event which has an event listner, then to stop the trigger of both the events include
-e.stopPropogation;
+    e.stopPropogation;
 to remove a element get its parent node by 
-e.target.parentNode
+    e.target.parentNode
 
 
 Async
+JS is synchronus and Single threaded
 Blocking codes blocks the flow
-set timeout 2
-set interval 2
+set timeout 2000
+set interval 2000
 fetch()
+
+
+PROMISES

@@ -1,0 +1,8 @@
+2024/10/18 18:50:21 Starting cygwin install, version 2.932
+2024/10/18 18:50:21 User has backup/restore rights
+2024/10/18 18:50:21 User has symlink creation right
+2024/10/18 18:50:21 io_stream_cygfile: fopen(/etc/setup/setup.rc) failed 2 No such file or directory
+2024/10/18 18:50:21 Current Directory: C:\APPS INSTALLER
+2024/10/18 18:50:25 mbox : Are you sure you want to exit setup? Any current download or installation will be aborted.
+2024/10/18 18:50:28 io_stream_cygfile: fopen(/etc/setup/setup.rc) failed 2 No such file or directory
+2024/10/18 18:50:28 Ending cygwin install

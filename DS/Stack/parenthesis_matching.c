@@ -1,79 +1,58 @@
 #include <stdio.h>
 #include <string.h>
 
-int stackIndex = -1;
-
-int preference(char c) {
-    if (c == '^') return 3;
-    else if (c == '*' || c == '/') return 2;
-    else if (c == '+' || c == '-') return 1;
-    else return -1;
+void print_array(char arr[], int array_index) {
+    for(int i = 0; i < array_index; i++) {
+        printf("\narr[%d] = %c ", i, arr[i]);
+    }
 }
 
-void push(char stack[], char store) {
-    stack[++stackIndex] = store;
+void push(char arr[], int array_index, char store) {
+    arr[array_index] = store;
 }
 
-char pop(char stack[]) {
-    if (stackIndex >= 0)
-        return stack[stackIndex--];
-    return '\0'; // Return null character if stack is empty
+void pop(char arr[], int array_index) {
+    arr[array_index] = 0;
 }
 
-void iToP(char infix[]) {
-    char postfix[100], stack[100], temp;
-    int postfixInd = 0, len;
+void parenthesis_matching(char str[], char arr[], int string_len) {
+    int arr_len = 0;
+    int didPop = 0;
 
-    stack[++stackIndex] = '(';
-    len = strlen(infix);
-    infix[len++] = ')';
-    infix[len] = '\0';
-
-    for (int i = 0; i < len; i++) {
-        char ichar = infix[i];
-
-        if ((ichar >= '0' && ichar <= '9') || (ichar >= 'a' && ichar <= 'z') || (ichar >= 'A' && ichar <= 'Z')) {
-            postfix[postfixInd++] = ichar;
-        } 
-
-        else if (ichar == '(') {
-            push(stack, ichar);
-        } 
-
-        else if (ichar == ')') {
-
-            while (stackIndex > -1 && stack[stackIndex] != '(') {
-                temp = pop(stack);
-                postfix[postfixInd++] = temp;
+    for(int i = 0; i < string_len; i++) {
+        if(str[i] == '[' || str[i] == '{' || str[i] == '(' || str[i] == '<') {
+            push(arr, arr_len, str[i]);
+            arr_len++;
+            didPop++;
+        }
+        else if(str[i] == ']' || str[i] == '}' || str[i] == ')' || str[i] == '>') {
+            if((arr[arr_len - 1] == '(' && str[i] == ')') ||
+               (arr[arr_len - 1] == '{' && str[i] == '}') ||
+               (arr[arr_len - 1] == '[' && str[i] == ']') ||
+               (arr[arr_len - 1] == '<' && str[i] == '>')) {
+                pop(arr, arr_len);
+                arr_len--;
             }
-            stackIndex--; // Pop the '(' from the stack
-        } 
-
-        else {
-
-            while (stackIndex > -1 && (preference(ichar) <= preference(stack[stackIndex]) && ichar != '^')) {
-                temp = pop(stack);
-                postfix[postfixInd++] = temp;
-            }
-            push(stack, ichar);
         }
     }
 
-    postfix[postfixInd] = '\0';
-
-    if (stackIndex == -1) {
-        printf("Postfix expression: %s\n", postfix);
-    } else {
-        printf("Invalid infix expression\n");
+    if(arr_len == 0 && didPop != 0) {
+        printf("All parenthesis are matched");
+    }
+    else {
+        printf("Parenthesis are not matched.");
     }
 }
 
 int main() {
-    char infix[100];
+    char str[100];
+    char arr[100];
 
-    printf("Enter the infix expression: ");
-    scanf("%s", infix);
+    printf("Enter the brackets: ");
+    scanf("%s", str);
 
-    iToP(infix);
+    int n = strlen(str);
+    parenthesis_matching(str, arr, n);
+
     return 0;
 }

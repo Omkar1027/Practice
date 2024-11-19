@@ -151,9 +151,15 @@
 // console.log(UserBooks);
 
 
-setInterval(function(){
-    for(i=0;i<99;i++){
-        console.log(i)
-    }
-}, 1000)
+// setInterval(function(){
+//     for(i=0;i<99;i++){
+//         console.log(i)
+//     }
+// }, 1000)
 
+const arr = [2,3,4,5]
+const arr2 = [6,7,8,9]
+// arr.slice(0,1)
+console.log
+console.log(arr.slice(1,2))
+console.log(arr2.splice(1,2))

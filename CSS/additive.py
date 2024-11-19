@@ -3,9 +3,9 @@ def encrypt_string(n,key):
     for i in range(len(n)):
         char=n[i]
         if char.isupper():
-            encrypt += chr(((ord(char)) + key - 65) % 26 + 65)
+            encrypt += chr(((ord(char)) - 65 + key) % 26 + 65)
         else:
-            encrypt += chr(((ord(char)) + key - 97) % 26 + 97)
+            encrypt += chr(((ord(char)) - 97 + key) % 26 + 97)
     return encrypt
 
 def decrypt_string(encrypt,key):

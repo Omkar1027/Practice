@@ -1,9 +1,11 @@
 CIRCULAR
-Create:         one line add and remove
+Create:         one line remove at start and add at end
 Insert Before:  whole last func
 Insert After:   NO CHANGE
 Insert At:      whole last func
-Delete Val:     whole last funcn
+Delete Val:     ptrbefore == ptrat
+                start==Null
+                if start start=start->next
 Delete Pos:     ptrbefore == ptrat
                 start==Null
                 if start start=start->next
